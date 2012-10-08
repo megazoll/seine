@@ -66,7 +66,9 @@ final class SheetHelper
 
         fwrite($this->stream, '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">' . MyWriter::EOL);
+        fwrite($this->stream, '<cols><col min="1" max="1" width="11" bestFit="1" customWidth="1"/><col min="2" max="4" width="10.28515625" bestFit="1" customWidth="1"/><col min="5" max="5" width="20.0" bestFit="1" customWidth="1"/><col min="6" max="6" width="6.7109375" bestFit="1" customWidth="1"/><col min="7" max="7" width="7.5703125" bestFit="1" customWidth="1"/><col min="8" max="8" width="16.85546875" bestFit="1" customWidth="1"/><col min="9" max="9" width="11" bestFit="1" customWidth="1"/><col min="10" max="10" width="15.28515625" bestFit="1" customWidth="1"/><col min="11" max="11" width="10.7109375" bestFit="1" customWidth="1"/><col min="12" max="12" width="20.0" bestFit="1" customWidth="1"/><col min="13" max="13" width="20" bestFit="1" customWidth="1"/><col min="14" max="14" width="20" bestFit="1" customWidth="1"/><col min="15" max="15" width="20.7109375" bestFit="1" customWidth="1"/><col min="16" max="16" width="15.42578125" bestFit="1" customWidth="1"/><col min="17" max="17" width="22.140625" bestFit="1" customWidth="1"/><col min="18" max="18" width="17.28515625" bestFit="1" customWidth="1"/></cols>' . MyWriter::EOL);
         fwrite($this->stream, '    <sheetData>' . MyWriter::EOL);
+
     }
 
     public function writeRow(Row $row)

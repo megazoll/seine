@@ -70,12 +70,19 @@ final class StylesHelper
 
     private function buildBorders()
     {
-        return '    <borders count="1">
+        return '    <borders count="2">
         <border>
             <left/>
             <right/>
             <top/>
             <bottom/>
+            <diagonal/>
+        </border>
+        <border>
+            <left style="thin"><color indexed="64"/></left>
+            <right style="thin"><color indexed="64"/></right>
+            <top style="thin"><color indexed="64"/></top>
+            <bottom style="thin"><color indexed="64"/></bottom>
             <diagonal/>
         </border>
     </borders>';
@@ -93,7 +100,10 @@ final class StylesHelper
         $i = 0;
         $data = '    <cellXfs count="' . count($styles) . '">' . MyWriter::EOL;
         foreach($styles as $style) {
-            $data .= '        <xf numFmtId="0" fontId="' . $i . '" fillId="0" borderId="0" xfId="0" applyFont="' . ($i > 0 ? 1 : 0) . '"/>' . MyWriter::EOL;
+            $alignment = '';
+            $alignment .= $style->getVerticalAlign()   ? ' vertical="'.$style->getVerticalAlign().'"'     : '';
+            $alignment .= $style->getHorizontalAlign() ? ' horizontal="'.$style->getHorizontalAlign().'"' : '';
+            $data .= '        <xf numFmtId="0" fontId="' . $i . '" fillId="0" borderId="1" xfId="0" applyBorder="1" applyFont="' . ($i > 0 ? 1 : 0) . '"'.($alignment ? ' applyAlignment="1"' : '').'>'.($alignment ? '<alignment'.$alignment.'/>' : '').'</xf>' . MyWriter::EOL;
             $i++;
         }
         $data .= '    </cellXfs>' . MyWriter::EOL;

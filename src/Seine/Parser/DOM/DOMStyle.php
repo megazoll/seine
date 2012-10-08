@@ -8,10 +8,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,7 +32,9 @@ final class DOMStyle implements Style
     private $fontBold = false;
     private $fontFamily = '';
     private $fontSize = 0;
-    
+    private $verticalAlign = null;
+    private $horizontalAlign = null;
+
     public function __construct(Factory $factory, $id)
     {
         $this->factory = $factory;
@@ -43,10 +45,10 @@ final class DOMStyle implements Style
     {
         return $this->id;
     }
-    
+
     /**
      * @param boolean $isBold
-     * @return DOMStyle 
+     * @return DOMStyle
      */
     public function setFontBold($isBold)
     {
@@ -56,7 +58,7 @@ final class DOMStyle implements Style
 
     /**
      * @param string $family
-     * @return DOMStyle 
+     * @return DOMStyle
      */
     public function setFontFamily($family)
     {
@@ -66,11 +68,23 @@ final class DOMStyle implements Style
 
     /**
      * @param integer $size
-     * @return DOMStyle 
+     * @return DOMStyle
      */
     public function setFontSize($size)
     {
         $this->fontSize = (int)$size;
+        return $this;
+    }
+
+    public function setVerticalAlign($verticalAlign)
+    {
+        $this->verticalAlign = $verticalAlign;
+        return $this;
+    }
+
+    public function setHorizontalAlign($horizontalAlign)
+    {
+        $this->horizontalAlign = $horizontalAlign;
         return $this;
     }
 
@@ -88,6 +102,14 @@ final class DOMStyle implements Style
     {
         return $this->fontSize;
     }
-    
-    
+
+    public function getVerticalAlign()
+    {
+        return $this->verticalAlign;
+    }
+
+    public function getHorizontalAlign()
+    {
+        return $this->horizontalAlign;
+    }
 }
