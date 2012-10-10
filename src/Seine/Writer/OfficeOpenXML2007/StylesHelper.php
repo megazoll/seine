@@ -103,7 +103,7 @@ final class StylesHelper
             $alignment = '';
             $alignment .= $style->getVerticalAlign()   ? ' vertical="'.$style->getVerticalAlign().'"'     : '';
             $alignment .= $style->getHorizontalAlign() ? ' horizontal="'.$style->getHorizontalAlign().'"' : '';
-            $data .= '        <xf numFmtId="0" fontId="' . $i . '" fillId="0" borderId="1" xfId="0" applyBorder="1" applyFont="' . ($i > 0 ? 1 : 0) . '"'.($alignment ? ' applyAlignment="1"' : '').'>'.($alignment ? '<alignment'.$alignment.'/>' : '').'</xf>' . MyWriter::EOL;
+            $data .= '        <xf numFmtId="0" fontId="' . $i . '" fillId="0" borderId="1" xfId="0" applyBorder="1" applyFont="' . ($i > 0 ? 1 : 0) . '"'.($alignment ? ' applyAlignment="1"' : '').'>'.($alignment ? '<alignment wrapText="1"'.$alignment.'/>' : '').'</xf>' . MyWriter::EOL;
             $i++;
         }
         $data .= '    </cellXfs>' . MyWriter::EOL;
