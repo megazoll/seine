@@ -44,6 +44,8 @@ final class DOMSheet extends DOMElement implements Sheet
      * @var Book
      */
     private $book;
+    
+    private $cols = '';
 
     public function getId()
     {
@@ -89,6 +91,16 @@ final class DOMSheet extends DOMElement implements Sheet
         $this->writer = $writer;
     }
 
+    public function getCols()
+    {
+        return $this->cols;
+    }
+
+    public function setCols($cols)
+    {
+        $this->cols = $cols;
+    }
+    
     private function startSheet()
     {
         if(! $this->writer) {
