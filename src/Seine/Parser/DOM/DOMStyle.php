@@ -34,6 +34,7 @@ final class DOMStyle implements Style
     private $fontSize = 0;
     private $verticalAlign = null;
     private $horizontalAlign = null;
+    private $numFmtId = 0;
 
     public function __construct(Factory $factory, $id)
     {
@@ -111,5 +112,16 @@ final class DOMStyle implements Style
     public function getHorizontalAlign()
     {
         return $this->horizontalAlign;
+    }
+
+    public function getNumFmtId()
+    {
+        return $this->numFmtId;
+    }
+
+    public function setNumFmtId($numFmtId)
+    {
+        $this->numFmtId = $numFmtId;
+        return $this;
     }
 }

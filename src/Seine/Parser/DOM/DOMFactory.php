@@ -8,10 +8,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,7 +32,7 @@ use Seine\Book;
  * Base of operation when creating spreadsheets.
  * @author Martin Vium
  */
-final class DOMFactory implements Factory 
+final class DOMFactory implements Factory
 {
     /**
      * @var Configuration
@@ -66,26 +66,26 @@ final class DOMFactory implements Factory
     {
         $this->config = $config;
     }
-    
+
     /**
-     * @return WriterFactoryImpl 
+     * @return WriterFactoryImpl
      */
     public function getWriterFactory()
     {
         return new WriterFactoryImpl($this);
     }
-    
+
     /**
      * Get a "clean" book object, you must set a writer before using it.
      *
      * @see Book::setWriter()
-     * @return DOMBook 
+     * @return DOMBook
      */
     public function getBook()
     {
         return new DOMBook($this);
     }
-    
+
     /**
      * Get a new row object.
      *
@@ -96,10 +96,15 @@ final class DOMFactory implements Factory
     {
         return new DOMArrayRow($this, $cells);
     }
-    
+
+    public function getCell($value)
+    {
+        return new DOMCell($value);
+    }
+
     /**
      * @internal
-     * @return DOMSheet 
+     * @return DOMSheet
      */
     public function getSheet()
     {
@@ -116,7 +121,7 @@ final class DOMFactory implements Factory
     {
         return new DOMStyle($this, $id);
     }
-    
+
     /**
      * Get a Book already configured with a writer and options from the default configuration
      * or the $config param if passed in.

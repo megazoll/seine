@@ -36,7 +36,9 @@ final class StylesHelper
         $data .= $this->buildStyleFonts($styles);
         $data .= $this->buildFills();
         $data .= $this->buildBorders();
+        $data .= $this->buildNumFmts();
 //        $data .= $this->buildCellStyles();
+        $data .= $this->buildCellStyleXfs();
         $data .= $this->buildCellXfs($styles);
         $data .= '</styleSheet>';
         return $data;
@@ -65,7 +67,7 @@ final class StylesHelper
         <fill>
             <patternFill patternType="none"/>
         </fill>
-    </fills>';
+    </fills>'.MyWriter::EOL;
     }
 
     private function buildBorders()
@@ -85,14 +87,29 @@ final class StylesHelper
             <bottom style="thin"><color indexed="64"/></bottom>
             <diagonal/>
         </border>
-    </borders>';
+    </borders>'.MyWriter::EOL;
     }
 
     private function buildCellStyles()
     {
         return '<cellStyles count="1">
         <cellStyle name="Normal" xfId="0" builtinId="0"/>
-    </cellStyles>';
+    </cellStyles>'.MyWriter::EOL;
+    }
+
+    private function buildCellStyleXfs()
+    {
+        return '<cellStyleXfs count="1">
+        <xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyProtection="false" applyFont="true" applyBorder="false" applyAlignment="false"/>
+    </cellStyleXfs>'.MyWriter::EOL;
+    }
+
+    private function buildNumFmts()
+    {
+        return '    <numFmts count="5">
+        <numFmt numFmtId="164" formatCode="GENERAL"/>
+        <numFmt numFmtId="165" formatCode="DD\.MM"/>
+    </numFmts>'.MyWriter::EOL;
     }
 
     private function buildCellXfs(array $styles)
@@ -103,7 +120,7 @@ final class StylesHelper
             $alignment = '';
             $alignment .= $style->getVerticalAlign()   ? ' vertical="'.$style->getVerticalAlign().'"'     : '';
             $alignment .= $style->getHorizontalAlign() ? ' horizontal="'.$style->getHorizontalAlign().'"' : '';
-            $data .= '        <xf numFmtId="0" fontId="' . $i . '" fillId="0" borderId="1" xfId="0" applyBorder="1" applyFont="' . ($i > 0 ? 1 : 0) . '"'.($alignment ? ' applyAlignment="1"' : '').'>'.($alignment ? '<alignment wrapText="1"'.$alignment.'/>' : '').'</xf>' . MyWriter::EOL;
+            $data .= '        <xf numFmtId="'.$style->getNumFmtId().'" fontId="' . $i . '" fillId="0" borderId="1" xfId="0" applyBorder="1" applyFont="' . ($i > 0 ? 1 : 0) . '"'.($alignment ? ' applyAlignment="1"' : '').'>'.($alignment ? '<alignment wrapText="1"'.$alignment.'/>' : '').'</xf>' . MyWriter::EOL;
             $i++;
         }
         $data .= '    </cellXfs>' . MyWriter::EOL;
