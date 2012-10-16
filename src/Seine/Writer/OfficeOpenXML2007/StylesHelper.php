@@ -33,10 +33,10 @@ final class StylesHelper
     {
         $data = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">' . MyWriter::EOL;
+        $data .= $this->buildNumFmts();
         $data .= $this->buildStyleFonts($styles);
         $data .= $this->buildFills();
         $data .= $this->buildBorders();
-        $data .= $this->buildNumFmts();
 //        $data .= $this->buildCellStyles();
         $data .= $this->buildCellStyleXfs();
         $data .= $this->buildCellXfs($styles);
@@ -106,8 +106,7 @@ final class StylesHelper
 
     private function buildNumFmts()
     {
-        return '    <numFmts count="5">
-        <numFmt numFmtId="164" formatCode="GENERAL"/>
+        return '    <numFmts count="1">
         <numFmt numFmtId="165" formatCode="DD\.MM"/>
     </numFmts>'.MyWriter::EOL;
     }
